@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>💗 Our Love Story</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 16px;
+            overflow-x: hidden;
+            position: relative;
+            transition: background 1.2s cubic-bezier(0.34, 1.2, 0.64, 1);
+        }
+
+        /* ============================================================
+           BACKGROUND — changes with tabs
+           ============================================================ */
+        body.tab1-bg {
+            background: #0f0a12;
+        }
+
+        body.tab2-bg {
+            background: #0c0a18;
+        }
+
+        /* gradient overlays that change */
+        .bg-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            transition: opacity 1.2s cubic-bezier(0.34, 1.2, 0.64, 1);
+        }
+
+        .bg-overlay-1 {
+            opacity: 1;
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(255, 107, 157, 0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 50%, rgba(200, 80, 160, 0.10) 0%, transparent 60%),
+                radial-gradient(ellipse at 50% 100%, rgba(180, 60, 140, 0.08) 0%, transparent 50%),
+                #0f0a12;
+        }
+
+        .bg-overlay-2 {
+            opacity: 0;
+            background:
+                radial-gradient(ellipse at 30% 40%, rgba(100, 140, 220, 0.15) 0%, transparent 55%),
+                radial-gradient(ellipse at 70% 60%, rgba(180, 100, 170, 0.12) 0%, transparent 55%),
+                radial-gradient(ellipse at 50% 100%, rgba(120, 80, 180, 0.08) 0%, transparent 50%),
+                #0c0a18;
+        }
+
+        body.tab2-bg .bg-overlay-1 {
+            opacity: 0;
+        }
+
+        body.tab2-bg .bg-overlay-2 {
+            opacity: 1;
+        }
+
+        /* floating orbs that change color */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
+            pointer-events: none;
+            animation: orbFloat 14s ease-in-out infinite alternate;
+            transition: all 1.5s cubic-bezier(0.34, 1.2, 0.64, 1);
+        }
+
+        .orb-1 {
+            width: 450px;
+            height: 450px;
+            top: -120px;
+            left: -120px;
+            animation-duration: 18s;
+        }
+
+        body.tab1-bg .orb-1 {
+            background: rgba(255, 107, 157, 0.08);
+        }
+
+        body.tab2-bg .orb-1 {
+            background: rgba(100, 140, 220, 0.08);
+        }
+
+        .orb-2 {
+            width: 500px;
+            height: 500px;
+            bottom: -150px;
+            right: -150px;
+            animation-duration: 22s;
+            animation-delay: -4s;
+        }
+
+        body.tab1-bg .orb-2 {
+            background: rgba(200, 80, 160, 0.06);
+        }
+
+        body.tab2-bg .orb-2 {
+            background: rgba(160, 100, 180, 0.06);
+        }
+
+        .orb-3 {
+            width: 350px;
+            height: 350px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-duration: 16s;
+            animation-delay: -2s;
+        }
+
+        body.tab1-bg .orb-3 {
+            background: rgba(180, 60, 140, 0.04);
+        }
+
+        body.tab2-bg .orb-3 {
+            background: rgba(120, 80, 180, 0.04);
+        }
+
+        @keyframes orbFloat {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                transform: translate(40px, -40px) scale(1.08);
+            }
+        }
+
+        /* sparkles */
+        .sparkle-bg {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            animation: sparkleFloat 20s infinite linear;
+            transition: background 1.5s ease;
+        }
+
+        body.tab1-bg .sparkle {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        body.tab2-bg .sparkle {
+            background: rgba(180, 200, 255, 0.2);
+        }
+
+        .sparkle:nth-child(odd) {
+            width: 6px;
+            height: 6px;
+        }
+
+        body.tab1-bg .sparkle:nth-child(odd) {
+            background: rgba(255, 180, 210, 0.15);
+        }
+
+        body.tab2-bg .sparkle:nth-child(odd) {
+            background: rgba(160, 190, 255, 0.15);
+        }
+
+        @keyframes sparkleFloat {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+                transform: translateY(90vh) scale(1);
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* ============================================================
+           MAIN CARD
+           ============================================================ */
+        .main-card {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 560px;
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-radius: 48px;
+            padding: 32px 28px 38px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow:
+                0 40px 100px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        /* ============================================================
+           TAB BAR
+           ============================================================ */
+        .tab-bar {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 28px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 60px;
+            padding: 5px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 12px 8px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            background: transparent;
+            color: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.34, 1.2, 0.64, 1);
+            letter-spacing: 0.5px;
+            position: relative;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .tab-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 0;
+        }
+
+        .tab-btn.active::before {
+            opacity: 1;
+        }
+
+        .tab-btn.active-tab1::before {
+            background: linear-gradient(135deg, #ff6b9d, #ff3d7f);
+            box-shadow: 0 8px 32px rgba(255, 60, 120, 0.25);
+        }
+
+        .tab-btn.active-tab2::before {
+            background: linear-gradient(135deg, #8aacd8, #b57aa8);
+            box-shadow: 0 8px 32px rgba(100, 120, 200, 0.2);
+        }
+
+        .tab-btn:hover {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .tab-btn.active {
+            color: #fff;
+            transform: scale(1.02);
+        }
+
+        .tab-btn .label {
+            position: relative;
+            z-index: 1;
+        }
+
+        .tab-btn .emoji {
+            margin-right: 5px;
+        }
+
+        /* ============================================================
+           TAB CONTENT
+           ============================================================ */
+        .tab-content {
+            display: none;
+            animation: fadeSlide 0.7s cubic-bezier(0.34, 1.2, 0.64, 1);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeSlide {
+            0% {
+                opacity: 0;
+                transform: translateY(24px) scale(0.96);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .tab-inner {
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 18px;
+            border-radius: 40px;
+            font-size: 0.6rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: rgba(255, 255, 255, 0.04);
+            color: rgba(255, 255, 255, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            margin-bottom: 10px;
+            transition: all 0.6s ease;
+        }
+
+        body.tab1-bg .badge {
+            color: rgba(255, 180, 210, 0.3);
+        }
+
+        body.tab2-bg .badge {
+            color: rgba(160, 190, 255, 0.3);
+        }
+
+        .title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.8rem;
+            line-height: 1.2;
+            margin-bottom: 4px;
+            transition: all 0.6s ease;
+        }
+
+        .tab1 .title-gradient {
+            background: linear-gradient(135deg, #ff8aae, #ff3d7f, #ff8aae);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: shimmer 4s ease-in-out infinite;
+        }
+
+        .tab2 .title-gradient {
+            background: linear-gradient(135deg, #8aacd8, #c58bb0, #8aacd8);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: shimmer 4s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .sub {
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.8rem;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            margin-bottom: 28px;
+            transition: color 0.6s ease;
+        }
+
+        body.tab2-bg .sub {
+            color: rgba(200, 220, 255, 0.25);
+        }
+
+        /* ============================================================
+           ENVELOPE
+           ============================================================ */
+        .envelope-wrapper {
+            position: relative;
+            cursor: pointer;
+            margin: 0 auto 14px;
+            width: 210px;
+            height: 155px;
+            border-radius: 20px;
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.5s ease;
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.25);
+        }
+
+        .envelope-wrapper:hover {
+            transform: scale(1.04) translateY(-6px);
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.35);
+        }
+
+        .envelope-wrapper:active {
+            transform: scale(0.96);
+        }
+
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 105px solid transparent;
+            border-right: 105px solid transparent;
+            border-top: 82px solid #c2185b;
+            transform-origin: top;
+            transition: transform 0.7s cubic-bezier(0.34, 1.4, 0.64, 1);
+            z-index: 3;
+            border-radius: 6px 6px 0 0;
+        }
+
+        .envelope-wrapper.open .envelope-flap {
+            transform: rotateX(180deg);
+        }
+
+        .envelope-pocket {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 105px solid #f48fb1;
+            border-right: 105px solid #f48fb1;
+            border-bottom: 82px solid #f06292;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            z-index: 2;
+        }
+
+        .envelope-ring {
+            position: absolute;
+            inset: -3px;
+            border-radius: 23px;
+            z-index: 0;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+            background: radial-gradient(circle at center, rgba(255, 100, 150, 0.15), transparent 70%);
+            filter: blur(16px);
+        }
+
+        .envelope-wrapper.open .envelope-ring {
+            opacity: 1;
+        }
+
+        .letter-preview {
+            position: absolute;
+            bottom: 12px;
+            left: 16px;
+            right: 16px;
+            height: 108px;
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 16px;
+            padding: 10px;
+            z-index: 1;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            transition: transform 0.7s cubic-bezier(0.34, 1.4, 0.64, 1) 0.15s;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2px;
+            font-size: 0.75rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .letter-preview .big {
+            font-size: 2.2rem;
+            margin-bottom: 2px;
+        }
+
+        .letter-preview .hint {
+            font-size: 0.6rem;
+            color: rgba(255, 255, 255, 0.15);
+            animation: pulseHint 2.5s ease-in-out infinite;
+        }
+
+        @keyframes pulseHint {
+            0%,
+            100% {
+                opacity: 0.15;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        .envelope-wrapper.open .letter-preview {
+            transform: translateY(-84px);
+        }
+
+        /* tab 1 envelope */
+        .tab1 .envelope-wrapper {
+            background: linear-gradient(145deg, #e91e63, #f06292);
+        }
+        .tab1 .envelope-flap {
+            border-top-color: #c2185b;
+        }
+        .tab1 .envelope-pocket {
+            border-left-color: #f48fb1;
+            border-right-color: #f48fb1;
+            border-bottom-color: #f06292;
+        }
+        .tab1 .envelope-ring {
+            background: radial-gradient(circle at center, rgba(255, 100, 150, 0.15), transparent 70%);
+        }
+
+        /* tab 2 envelope */
+        .tab2 .envelope-wrapper {
+            background: linear-gradient(145deg, #7a9cd1, #b57aa8);
+        }
+        .tab2 .envelope-flap {
+            border-top-color: #5a7bb5;
+        }
+        .tab2 .envelope-pocket {
+            border-left-color: #b088c9;
+            border-right-color: #b088c9;
+            border-bottom-color: #c58bb0;
+        }
+        .tab2 .envelope-ring {
+            background: radial-gradient(circle at center, rgba(100, 140, 220, 0.15), transparent 70%);
+        }
+
+        /* ============================================================
+           LOVE METER
+           ============================================================ */
+        .love-meter {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-top: 18px;
+            font-size: 0.65rem;
+            color: rgba(255, 255, 255, 0.12);
+            letter-spacing: 1px;
+            transition: color 0.6s ease;
+        }
+
+        body.tab2-bg .love-meter {
+            color: rgba(180, 200, 255, 0.1);
+        }
+
+        .love-meter .heart-dot {
+            display: inline-block;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            transition: all 0.8s ease;
+        }
+
+        .love-meter .heart-dot.lit {
+            background: #ff6b9d;
+            box-shadow: 0 0 16px rgba(255, 80, 140, 0.3);
+        }
+
+        body.tab2-bg .love-meter .heart-dot.lit {
+            background: #8aacd8;
+            box-shadow: 0 0 16px rgba(100, 140, 220, 0.3);
+        }
+
+        /* ============================================================
+           MODAL
+           ============================================================ */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 300;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            padding: 20px;
+        }
+
+        .modal.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .letter-card {
+            background: linear-gradient(145deg, rgba(25, 15, 30, 0.92), rgba(15, 10, 20, 0.96));
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-radius: 36px;
+            padding: 42px 32px 34px;
+            max-width: 460px;
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6);
+            transform: scale(0.92) translateY(20px);
+            transition: transform 0.6s cubic-bezier(0.34, 1.4, 0.64, 1);
+            max-height: 88vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal.show .letter-card {
+            transform: scale(1) translateY(0);
+        }
+
+        .letter-card .close-btn {
+            position: absolute;
+            top: 14px;
+            right: 18px;
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.1);
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 4px 10px;
+            border-radius: 8px;
+        }
+
+        .letter-card .close-btn:hover {
+            color: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .letter-card h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.4rem;
+            margin-bottom: 4px;
+        }
+
+        .letter-card .letter-date {
+            font-size: 0.6rem;
+            color: rgba(255, 255, 255, 0.1);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .letter-body {
+            font-size: 0.92rem;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 2;
+            text-align: left;
+            padding: 20px 22px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border-left: 3px solid #ff6b9d;
+            margin-bottom: 22px;
+            position: relative;
+        }
+
+        .letter-body .quote {
+            font-size: 2.8rem;
+            font-family: 'Playfair Display', serif;
+            color: rgba(255, 255, 255, 0.03);
+            position: absolute;
+            top: -8px;
+            left: 6px;
+            line-height: 1;
+        }
+
+        .letter-body.tab2-body {
+            border-left-color: #8aacd8;
+        }
+
+        .letter-body p {
+            margin-bottom: 0.5rem;
+        }
+
+        .letter-body .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.4rem;
+            color: rgba(255, 255, 255, 0.3);
+            text-align: right;
+            margin-top: 6px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 11px 28px;
+            border: none;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.34, 1.2, 0.64, 1);
+            background: linear-gradient(135deg, #ff6b9d, #ff3d7f);
+            color: #fff;
+            box-shadow: 0 8px 32px rgba(255, 60, 120, 0.2);
+            letter-spacing: 0.3px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn:hover {
+            transform: scale(1.04) translateY(-2px);
+            box-shadow: 0 12px 44px rgba(255, 60, 120, 0.3);
+        }
+
+        .btn:active {
+            transform: scale(0.96);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.04);
+            color: rgba(255, 255, 255, 0.3);
+            box-shadow: none;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.06);
+            color: rgba(255, 255, 255, 0.6);
+            box-shadow: none;
+        }
+
+        .btn-bluepink {
+            background: linear-gradient(135deg, #8aacd8, #b57aa8);
+            box-shadow: 0 8px 32px rgba(100, 120, 200, 0.2);
+        }
+
+        .btn-bluepink:hover {
+            box-shadow: 0 12px 44px rgba(100, 120, 200, 0.3);
+        }
+
+        /* ============================================================
+           HEART BURST
+           ============================================================ */
+        .heart-burst {
+            position: fixed;
+            pointer-events: none;
+            font-size: 22px;
+            animation: burst 1.2s cubic-bezier(0.34, 1.2, 0.64, 1) forwards;
+            z-index: 999;
+            filter: drop-shadow(0 4px 24px rgba(255, 60, 120, 0.15));
+            user-select: none;
+        }
+
+        @keyframes burst {
+            0% {
+                transform: translate(0, 0) scale(0.3) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--dx), var(--dy)) scale(0.05) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* ============================================================
+           SCROLLBAR
+           ============================================================ */
+        .letter-card::-webkit-scrollbar {
+            width: 3px;
+        }
+        .letter-card::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.01);
+        }
+        .letter-card::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 10px;
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 480px) {
+            .main-card {
+                padding: 20px 14px 28px;
+                border-radius: 32px;
+            }
+            .tab-btn {
+                font-size: 0.65rem;
+                padding: 10px 4px;
+            }
+            .tab-btn .emoji {
+                margin-right: 2px;
+            }
+            .title {
+                font-size: 2.2rem;
+            }
+            .envelope-wrapper {
+                width: 170px;
+                height: 128px;
+            }
+            .envelope-flap {
+                border-left-width: 85px;
+                border-right-width: 85px;
+                border-top-width: 66px;
+            }
+            .envelope-pocket {
+                border-left-width: 85px;
+                border-right-width: 85px;
+                border-bottom-width: 66px;
+            }
+            .letter-preview {
+                height: 84px;
+                bottom: 8px;
+                left: 12px;
+                right: 12px;
+                font-size: 0.65rem;
+            }
+            .letter-preview .big {
+                font-size: 1.6rem;
+            }
+            .envelope-wrapper.open .letter-preview {
+                transform: translateY(-66px);
+            }
+            .letter-card {
+                padding: 32px 16px 24px;
+            }
+            .letter-card h2 {
+                font-size: 2rem;
+            }
+            .letter-body {
+                padding: 14px 16px;
+                font-size: 0.85rem;
+            }
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.75rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .envelope-wrapper {
+                width: 140px;
+                height: 108px;
+            }
+            .envelope-flap {
+                border-left-width: 70px;
+                border-right-width: 70px;
+                border-top-width: 56px;
+            }
+            .envelope-pocket {
+                border-left-width: 70px;
+                border-right-width: 70px;
+                border-bottom-width: 56px;
+            }
+            .letter-preview {
+                height: 70px;
+                font-size: 0.55rem;
+            }
+            .letter-preview .big {
+                font-size: 1.2rem;
+            }
+            .envelope-wrapper.open .letter-preview {
+                transform: translateY(-56px);
+            }
+        }
+    </style>
+</head>
+<body class="tab1-bg">
+
+    <!-- ===== BACKGROUND OVERLAYS ===== -->
+    <div class="bg-overlay bg-overlay-1"></div>
+    <div class="bg-overlay bg-overlay-2"></div>
+
+    <!-- ===== ORBS ===== -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- ===== SPARKLES ===== -->
+    <div class="sparkle-bg" id="sparkleBg"></div>
+
+    <!-- ===== MAIN CARD ===== -->
+    <div class="main-card">
+
+        <!-- TAB BAR -->
+        <div class="tab-bar">
+            <button class="tab-btn active active-tab1" data-tab="tab1">
+                <span class="label"><span class="emoji">🌸</span> 1st Month</span>
+            </button>
+            <button class="tab-btn" data-tab="tab2">
+                <span class="label"><span class="emoji">💙</span> 2nd Month</span>
+            </button>
+        </div>
+
+        <!-- ===== TAB 1 ===== -->
+        <div id="tab1" class="tab-content active tab1">
+            <div class="tab-inner">
+                <div class="badge">✨ chapter one</div>
+                <h1 class="title title-gradient">Happy 1st Monthsary</h1>
+                <p class="sub">tap the envelope to read your letter 💌</p>
+
+                <div class="envelope-wrapper" data-modal="modal1">
+                    <div class="envelope-ring"></div>
+                    <div class="envelope-flap"></div>
+                    <div class="envelope-pocket"></div>
+                    <div class="letter-preview">
+                        <span class="big">💌</span>
+                        <span>open me</span>
+                        <span class="hint">✦ tap ✦</span>
+                    </div>
+                </div>
+
+                <div class="love-meter">
+                    <span class="heart-dot lit"></span>
+                    <span class="heart-dot lit"></span>
+                    <span class="heart-dot lit"></span>
+                    <span class="heart-dot lit"></span>
+                    <span class="heart-dot lit"></span>
+                    <span style="margin-left:4px;">· 1 month of love</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== TAB 2 ===== -->
+        <div id="tab2" class="tab-content tab2">
+            <div class="tab-inner">
+                <div class="badge">💫 chapter two</div>
+                <h1 class="title title-gradient">Happy 2nd Monthsary</h1>
+                <p class="sub">a new letter, a new memory 💕</p>
+
+                <div class="envelope-wrapper" data-modal="modal2">
+                    <div class="envelope-ring"></div>
+                    <div class="envelope-flap"></div>
+                    <div class="envelope-pocket"></div>
+                    <div class="letter-preview">
+                        <span class="big">💕</span>
+                        <span>open me</span>
+                        <span class="hint">✦ tap ✦</span>
+                    </div>
+                </div>
+
+                <div class="love-meter">
+                    <span class="heart-dot lit"></span>
+                    <span class="heart-dot lit"></span>
+                    <span class="heart-dot lit"></span>
+                    <span class="heart-dot lit"></span>
+                    <span class="heart-dot lit"></span>
+                    <span class="heart-dot lit"></span>
+                    <span style="margin-left:4px;">· 2 months of us</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ===== MODAL 1 ===== -->
+    <div class="modal" id="modal1">
+        <div class="letter-card">
+            <button class="close-btn" onclick="closeModal('modal1')">✕</button>
+            <h2 style="background: linear-gradient(135deg, #ff8aae, #ff3d7f); -webkit-background-clip: text; background-clip: text; color: transparent;">Happy 1st Monthsary ✨</h2>
+            <div class="letter-date">— one month of magic —</div>
+            <div class="letter-body">
+                <span class="quote">"</span>
+                <p>Happy 1st monthsary, my love! 💗</p>
+                <p>Di gihapon ko katuo nga one month na diay ta. Time flies jud basta happy kaayo ka sa usa ka tawo. Thank you for making this past month so special and for always making me laugh.</p>
+                <p>Cheers to more months and years of us eating out, random chikas, and simple moments together.</p>
+                <p>I'm really glad you came into my life. I love you! 🤍</p>
+                <div class="signature">— yours, always</div>
+            </div>
+            <div class="btn-group">
+                <button class="btn" onclick="triggerHearts(event)">💖 Send Hearts</button>
+                <button class="btn btn-secondary" onclick="closeModal('modal1')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== MODAL 2 ===== -->
+    <div class="modal" id="modal2">
+        <div class="letter-card">
+            <button class="close-btn" onclick="closeModal('modal2')">✕</button>
+            <h2 style="background: linear-gradient(135deg, #8aacd8, #c58bb0); -webkit-background-clip: text; background-clip: text; color: transparent;">💖 My Dearest,</h2>
+            <div class="letter-date">— two months of forever —</div>
+            <div class="letter-body tab2-body">
+                <span class="quote">"</span>
+                <p>Happy 2nd Monthsary, Love! 🌷</p>
+                <p>Pagkakaspas sa panahon oy, duha ka bulan na man diay dayon ta. Bisan mubo pa nga panahon ang milabay, ang kasingkasing nako puno na kaayo sa mga nindot nga memories nga atong gi-share. Kada adlaw nga uban ka, murag blessing jud sa akoa.</p>
+                <p>Malingaw jud ko basta magkuyog ta, ilabi na katong mga simple nga kaon-kaon nato sa bisan unsa lang nga maganahan—paborito jud to nako nga bonding uban nimo kay diha nako makita imong mga nindot nga pahiyom. Kahibalo ka, ganahan kaayo ko nga mosulay og mga bag-ong butang sa kinabuhi basta ikaw lang ang akong kuyog. Excited na kaayo ko sa mas daghan pa nga laag ug adventures uban nimo.</p>
+                <p>Salamat kaayo sa sige og palipay nako, sa paghimo sa matag adlaw nga espesyal, ug sa pagpabilin sa akong kiliran bisan sa mga "Zero days" sa akong kinabuhi. Salamat kay gihigugma ko nimo. I love you so much, Love! 💗</p>
+                <div class="signature">— forever yours</div>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-bluepink" onclick="triggerHearts(event)">💕 Send Hearts</button>
+                <button class="btn btn-secondary" onclick="closeModal('modal2')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ============================================================
+        //  SPARKLE BACKGROUND
+        // ============================================================
+        (function initSparkles() {
+            const container = document.getElementById('sparkleBg');
+            for (let i = 0; i < 35; i++) {
+                const el = document.createElement('div');
+                el.classList.add('sparkle');
+                el.style.left = Math.random() * 100 + '%';
+                el.style.width = (2 + Math.random() * 4) + 'px';
+                el.style.height = el.style.width;
+                el.style.animationDuration = (15 + Math.random() * 25) + 's';
+                el.style.animationDelay = (Math.random() * 25) + 's';
+                el.style.opacity = 0.2 + Math.random() * 0.3;
+                container.appendChild(el);
+            }
+        })();
+
+        // ============================================================
+        //  TAB SWITCHING — with background change
+        // ============================================================
+        (function initTabs() {
+            const btns = document.querySelectorAll('.tab-btn');
+            const tabs = {
+                tab1: document.getElementById('tab1'),
+                tab2: document.getElementById('tab2')
+            };
+            const body = document.body;
+
+            btns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Update tab buttons
+                    btns.forEach(b => {
+                        b.classList.remove('active', 'active-tab1', 'active-tab2');
+                    });
+
+                    // Update tab content
+                    Object.values(tabs).forEach(t => t.classList.remove('active'));
+
+                    const target = this.dataset.tab;
+                    tabs[target].classList.add('active');
+                    this.classList.add('active');
+
+                    // Update background
+                    if (target === 'tab1') {
+                        body.classList.remove('tab2-bg');
+                        body.classList.add('tab1-bg');
+                        this.classList.add('active-tab1');
+                    } else {
+                        body.classList.remove('tab1-bg');
+                        body.classList.add('tab2-bg');
+                        this.classList.add('active-tab2');
+                    }
+                });
+            });
+        })();
+
+        // ============================================================
+        //  ENVELOPE → MODAL
+        // ============================================================
+        (function initEnvelopes() {
+            document.querySelectorAll('.envelope-wrapper').forEach(wrapper => {
+                wrapper.addEventListener('click', function(e) {
+                    const modalId = this.dataset.modal;
+                    const modal = document.getElementById(modalId);
+                    if (!modal) return;
+
+                    this.classList.add('open');
+                    triggerHearts(e);
+
+                    this.style.transition = 'transform 0.1s';
+                    this.style.transform = 'scale(0.94)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+
+                    setTimeout(() => {
+                        modal.classList.add('show');
+                        document.body.style.overflow = 'hidden';
+                    }, 600);
+                });
+            });
+        })();
+
+        // ============================================================
+        //  MODAL CONTROLS
+        // ============================================================
+        function closeModal(id) {
+            const modal = document.getElementById(id);
+            if (!modal) return;
+            modal.classList.remove('show');
+            document.body.style.overflow = '';
+
+            const wrapper = document.querySelector(`.envelope-wrapper[data-modal="${id}"]`);
+            if (wrapper) {
+                setTimeout(() => wrapper.classList.remove('open'), 400);
+            }
+        }
+
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) closeModal(this.id);
+            });
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal.show').forEach(m => closeModal(m.id));
+            }
+        });
+
+        // ============================================================
+        //  HEART BURST
+        // ============================================================
+        function triggerHearts(event) {
+            const x = event.clientX || window.innerWidth / 2;
+            const y = event.clientY || window.innerHeight / 2;
+            const icons = ['❤️', '💖', '💕', '🌸', '✨', '🩷', '💗', '🌷', '💝', '🌟', '💫', '🫶'];
+
+            const count = 30 + Math.floor(Math.random() * 25);
+            for (let i = 0; i < count; i++) {
+                const el = document.createElement('div');
+                el.classList.add('heart-burst');
+                el.textContent = icons[Math.floor(Math.random() * icons.length)];
+                const angle = Math.random() * Math.PI * 2;
+                const dist = 50 + Math.random() * 180;
+                el.style.left = x + 'px';
+                el.style.top = y + 'px';
+                el.style.setProperty('--dx', Math.cos(angle) * dist + 'px');
+                el.style.setProperty('--dy', Math.sin(angle) * dist - 40 + 'px');
+                el.style.fontSize = (16 + Math.random() * 28) + 'px';
+                el.style.animationDuration = (0.8 + Math.random() * 0.7) + 's';
+                document.body.appendChild(el);
+                setTimeout(() => el.remove(), 1600);
+            }
+
+            // gentle flash
+            const flash = document.createElement('div');
+            flash.style.cssText = `
+                position: fixed; inset: 0; z-index: 998;
+                background: radial-gradient(circle at ${x}px ${y}px, rgba(255,200,230,0.08), transparent 60%);
+                pointer-events: none;
+                animation: flashFade 0.8s ease-out forwards;
+            `;
+            document.body.appendChild(flash);
+            setTimeout(() => flash.remove(), 900);
+
+            if (!document.getElementById('flashStyle')) {
+                const style = document.createElement('style');
+                style.id = 'flashStyle';
+                style.textContent = `@keyframes flashFade { 0% { opacity: 1; } 100% { opacity: 0; } }`;
+                document.head.appendChild(style);
+            }
+        }
+
+        // double-click anywhere for hearts
+        document.addEventListener('dblclick', function(e) {
+            triggerHearts(e);
+        });
+
+        // ============================================================
+        //  MODAL OBSERVER — body overflow
+        // ============================================================
+        (function initModalObserver() {
+            const modals = document.querySelectorAll('.modal');
+            const observer = new MutationObserver(() => {
+                let open = false;
+                document.querySelectorAll('.modal.show').forEach(() => { open = true; });
+                document.body.style.overflow = open ? 'hidden' : '';
+            });
+            modals.forEach(m => {
+                observer.observe(m, { attributes: true, attributeFilter: ['class'] });
+            });
+        })();
+    </script>
+
+</body>
+</html>
